@@ -50,3 +50,9 @@ python app.py
 ```
 Remember that, before running the app, change the mysql password to your own, it is defaulted in the code as 'password'.
 You can now point your favorite web brower to [localhost:5000](localhost:5000) to see your web app. 
+
+#More To Do:
+#####So far, the app is running locally for single-user test, it could be improved with multi-user usage with adding session.
+#####In addition, the api could be redesigned to rest api and adding more stuff to front-end with better user experience.
+#####More to go, the app could be hosted by Nignx deployed on AWS for public access. Then the database has to be on cloud accrodingly. 
+#####When the user gets more and more, we might need a distributed system to improve the performance.
