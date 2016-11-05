@@ -1,0 +1,79 @@
+<head>
+    <title>View</title>
+</head>
+<body>
+<!-- 	<div>	
+        <h2>Viewing all photos by tag name</h2>
+        {% if photos %}
+            <ul>
+                {% for photo in photos %}
+                    <li><img src='data:image/png;base64, {{photo[0]}}'/></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+	</div> -->
+
+	<div>
+		<h1>All Tags:</h1>
+        {% if tags %}
+        <form method="POST" action="{{ url_for('show_all_tag_photos') }}">
+            <p>All tags:</p>
+            <select name="tagname" style="width: 100px;">
+                {% for tag in tags %}
+                <option value={{tag[0]}}>{{tag[0]}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" name="view" value="View photos by tag"></input>
+        </form>
+        {% else %}
+            <li><a href='/upload'>Let's upload a photo with a tag first</a></li>
+        {% endif %}
+    <br/>
+	</div>
+
+    <div>
+        <h1>All Albums:</h1>
+        {% if albums %}
+        <form method="POST" action="{{ url_for('view_album') }}">
+        <p>All albums</p>
+        <select name="albums" style="width: 100px;">
+            {% for album in albums %}
+                <option value={{album[0]}}>{{album[1]}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" name="view" value="View photos"></input>
+        </form>
+        {% else %}
+        <p>Let's create an album first</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <h1>Most Popular tags:</h1>
+        {% if poptags %}
+        <form method="POST" action="{{ url_for('show_all_tag_photos') }}">
+            <p>Top five tags:</p>
+            <select name="tagname" style="width: 100px;">
+                {% for tag in poptags %}
+                <option value={{tag}}>{{tag}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" name="view" value="View photos by tag"></input>
+        </form>
+        {% else %}
+            <li><a href='/upload'>Let's upload a photo with a tag first</a></li>
+        {% endif %}
+    </div>
+
+    <div>
+    <h1>Photo Search:</h1>
+            <form method="POST" action="{{ url_for('photo_search') }}"> 
+            <label for="name">The Tag Name you want to search(use space for multi tag search):</label>
+            <input type="text" name="name" /><br />
+            <input type="submit" name="Search via tag" Value = "Search"/>
+        </form>
+    </div>
+
+
+<li><a href='/'>Home</a></li>
+</body>

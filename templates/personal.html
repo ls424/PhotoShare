@@ -1,0 +1,124 @@
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- view user profile -->
+    <h1>Your profile:</h1>
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birthday</th>
+            <th>Hometown</th>
+            <th>Gender</th>
+        </tr>
+        <tr>
+            <td>{{ email }}</td>
+            <td>{{ firstname }}</td>
+            <td>{{ lastname }}</td>
+            <td>{{ birthday }}</td>
+            <td>{{ hometown }}</td>
+            <td>{{ gender }}</td>
+        </tr>
+    </table>
+    <br/>
+
+
+
+<!--     <div>
+        {% if albums %}
+        <ul>
+            {% for albumid in albums %}
+                <li><a href='profile/albums/{{albumid[0]}}'>{{albumid[0]}}</a></li>
+            {% endfor %}
+        {% endif %}
+        </ul>
+    </div> -->
+
+
+    <!-- view albums you own -->
+    <h1>Your Albums:</h1>
+        {% if albums %}
+        <form method="POST" action="{{ url_for('show_album_photos') }}">
+            <p>Your albums:</p>
+            <select name="albumid" style="width: 100px;">
+                {% for album in albums %}
+                <option value={{album[0]}}>{{album[1]}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" name="view" value="View photos by album"></input>
+        </form>
+        {% else %}
+            <p>Let's create an album first</p>
+        {% endif %}
+    <br/>
+
+    <!-- get user photos of tag -->
+    <h1>All User Tags:</h1>
+        {% if tags %}
+        <form method="POST" action="{{ url_for('show_tag_photos') }}">
+            <p>All tags:</p>
+            <select name="tagname" style="width: 100px;">
+                {% for tag in tags %}
+                <option value={{tag[0]}}>{{tag[0]}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" name="view" value="View photos by tag"></input>
+        </form>
+        {% else %}
+            <li><a href='/upload'>Let's upload a photo with a tag first</a></li>
+        {% endif %}
+    <br/>
+
+    <!-- view photo tag -->
+<!--     <h1>Your Photo tags:</h1>
+        {% if tags %}
+            <ul>
+                {% for tag in tags %}
+                    <li><a href='profile/tags/{{tag[0]}}'></a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    <br/> -->
+
+
+
+
+    <h1>Your Might want to:</h1>
+    <!-- create album -->
+    <div>
+        <form method="POST" action="{{ url_for('create_album') }}"> 
+            <label for="name">The Album Name you want to create:</label>
+            <input type="text" name="name" /><br />
+            <input type="submit" name="Create Album" Value = "create"/>
+        </form>
+    </div>
+
+    <!-- delete album -->
+    <div>
+        <form method="POST" action="{{ url_for('delete_album') }}">   
+            <label for="aname">The Album Name you want to delete:</label>
+            <input type="text" name="aname" /><br />
+            <input type="submit" name = "Delete Album" Value = "delete"/>
+        </form>
+    </div>
+
+
+<li><a href='/'>Home</a></li>
+</body>

@@ -1,0 +1,51 @@
+<head>
+	<title>Recommendation</title>
+</head>
+<body>
+<h3>(Please input several tag names in your mind with spaces)</h3>
+	<form method = "POST" action="{{ url_for('get_tag_recom') }}">
+            <input type="text" name="inputtags" /><br />
+            <input type="submit" value = "find tags"/>
+    </form>
+
+    {% if retags %}
+    	{% for tag in retags %}
+    		<ul>
+    			<li> {{tag}}</li>
+    		</ul>
+    	{% endfor %}
+
+    {% endif %}
+<br/>
+
+<h1>Get the Recommendation photos for you:</h1>
+	{% if photos %}
+    <h2>View Photo by {{attribute}} for {{aname}} {{recom}}</h2>
+    <ul>
+    {% for photo in photos %}
+        <li><img src='data:image/png;base64, {{photo[0]}}'/></li>
+        Tags:        
+        {% if tags %}
+        {% for tag in tags %}
+          {% if tag[1] == photo[1] %}
+            <p><a href="/view/tag_photo/{{tag[0]}}">{{tag[0]}}</a><p>
+          {% endif %}
+        {% endfor %}
+        {% endif %}
+        <li>Photo_caption:{{photo[2]}}</li>
+        <li>Photo_belong:{{photo[4]}}</li>
+        <li>Photo_likes:{{photo[3]}}</li>
+          <li><a href="/like/{{photo[1]}}">Like this photo</a></li>
+          <form method = "POST" enctype="multipart/form-data" action="/new_comment/{{photo[1]}}">
+            <input type="text" name="comment" /><br />
+            <input type="submit" value = "comment"/>
+          </form>
+          <li><a href="/show_comment/{{photo[1]}}">Show Comments</a></li>
+          <li><a href="/delete_photo/{{photo[1]}}">delete the photo</a></li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+
+	<li><a href='/'>Home</a></li>
+</body>

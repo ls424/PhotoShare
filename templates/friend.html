@@ -1,0 +1,33 @@
+<head>
+	<title>Friend</title>
+</head>
+<body>
+	<div>
+		{% if friends %}
+			<p>Your friend</p>
+			<ul name="friends">
+				{% for friend in friends %}
+					<li style="list-style: none;">{{friend[0]}}</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<p>Add your first friend</p>
+		{% endif %}
+	</div>
+	<div>-------------------------------------------------------------------</div>
+	<div>
+		<form method="post" action="{{ url_for('add_friend') }}">
+			<p>People you may know</p>
+			<select name="users" size="10">
+				{% if users %}
+					{% for user in users %}
+						<option value={{user[0]}}>{{user[1]}} {{user[2]}}</option>
+					{% endfor %}
+				{% endif %}
+            </select>
+
+			<input type='submit' name='add' value="Add friend!"></input>
+		</form>
+	</div>
+	<li><a href='/'>Home</a></li>
+</body>

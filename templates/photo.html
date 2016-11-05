@@ -1,0 +1,35 @@
+<head>
+    <title>Your photos</title>
+</head>
+<!-- {% if message %}
+  <h4>{{message}}!</h4>
+{% endif %} -->
+<body>
+    {% if photos %}
+    <h2>View Photo by {{attribute}} for {{aname}} {{recom}}</h2>
+    <ul>
+    {% for photo in photos %}
+        <li><img src='data:image/png;base64, {{photo[0]}}'/></li>
+        Tags:        
+        {% if tags %}
+        {% for tag in tags %}
+          {% if tag[1] == photo[1] %}
+            <p><a href="/view/tag_photo/{{tag[0]}}">{{tag[0]}}</a><p>
+          {% endif %}
+        {% endfor %}
+        {% endif %}
+        <li>Photo_caption:{{photo[2]}}</li>
+        <li>Photo_belong:{{photo[4]}}</li>
+        <li>Photo_likes:{{photo[3]}}</li>
+          <li><a href="/hello/like/{{photo[1]}}">Like this photo</a></li>
+          <form method = "POST" enctype="multipart/form-data" action="/comment/new/{{photo[1]}}">
+            <input type="text" name="comment" /><br />
+            <input type="submit" value = "comment"/>
+          </form>
+          <li><a href="/comment/show/{{photo[1]}}">Show Comments</a></li>
+          <li><a href="/hello/photo/delete/{{photo[1]}}">delete the photo</a></li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+	<li><a href='/'>Home</a></li>
+</body>

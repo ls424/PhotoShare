@@ -1,0 +1,16 @@
+<head>
+	<title>Commnet</title>
+</head>
+<body>
+	{% if comments %}
+		{% for comment in comments %}
+			<ul>
+				<li>{{comment[0]}}, Commented by: {{comment[1]}}</li>
+			</ul>
+		{% endfor %}
+	{% else %}
+		<p>No comments for this pic right now </p>
+	{% endif %}
+
+		<li><a href='/'>Home</a></li>
+</body>
