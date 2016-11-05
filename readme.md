@@ -3,19 +3,19 @@
 This is a full-stack website that using Mysql, Flask and Python to implement photo share and recommendation function.
 
 ##Features:
+#####1 Tag management:
+       1.1 Viewing your photos by tag name
+       1.2 Viewing all photos by tag name
+       1.3 Viewing the most popular tags
+       1.4 Photo search
 
-#####Tag management
-Viewing your photos by tag name. 
-Viewing all photos by tag name. 
-Viewing the most popular tags. 
-Photo search. 
-#####Comments
-Leaving comments
-Like functionality
-#####Recommendations
-'You-may-also-like' functionality
-	Tag recommendation functionality
+#####2 Comments:
+       2.1 Leaving comments
+       2.2 Like functionality
 
+#####3 Recommendations:
+       3.1 'You-may-also-like' functionality
+       3.2 Tag recommendation functionality
 
 
 #Installation
